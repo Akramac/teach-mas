@@ -566,18 +566,6 @@ Common
 		--c2: #004a6a;
 	}
 
-	body {
-		overflow-y: auto;
-		width: 100vw;
-		height: 100vh;
-		margin: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: Arial, Helvetica, serif;
-		font-size: 18px;
-		background: radial-gradient(circle at 50% 0%, #6cafc3, rgba(255, 255, 255, 0)), radial-gradient(circle at 50% 100%, #6cafc3, #1a456e);
-	}
 	body * {
 		box-sizing: border-box;
 	}
