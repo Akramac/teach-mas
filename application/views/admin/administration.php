@@ -704,12 +704,17 @@ Common
 		height: 50px;
 	}
 
+	.pagination li {
+		vertical-align: baseline;
+	}
+
 	.pagination li a {
 		padding: 10px;
 		background: rgba(255, 255, 255, 0.8666666667);
 		color: var(--c2);
 		text-decoration: none;
 		border-radius: 5px;
+		line-height: 20px;
 	}
 
 	.pagination li.page_link a:hover {
@@ -723,6 +728,7 @@ Common
 	}
 
 	.pagination li > span {
+		color: #000;
 		font-weight: bold;
 		font-size: 15px;
 		top: -4px;
@@ -742,7 +748,7 @@ Common
 	li.first_link a, li.last_link a {
 		background: rgba(255, 255, 255, 0);
 		/* border: 2px solid #fff; */
-		color: rgba(255, 255, 255, 0);
+		color: black;
 		display: block;
 		padding: 10px 12px;
 	}
@@ -750,7 +756,7 @@ Common
 	li.previous_link a:before, li.next_link a:before,
 	li.first_link a:before, li.last_link a:before {
 		content: "";
-		border: 2px solid #fff;
+		border: 2px solid #000;
 		width: 12px;
 		height: 12px;
 		display: block;
@@ -769,7 +775,7 @@ Common
 	}
 
 	li.first_link a:before, li.last_link a:before {
-		filter: drop-shadow(5px 5px 0 #fff);
+		filter: drop-shadow(5px 5px 0 #000);
 		margin-left: 0px;
 	}
 
