@@ -558,6 +558,247 @@ Common
 	.div-after-label{
 		margin-top: 15%;
 	}
+
+	/* Pagination css */
+
+	/*** fixing bug on reflex ***/
+	:root {
+		--c2: #004a6a;
+	}
+
+	body {
+		overflow-y: auto;
+		width: 100vw;
+		height: 100vh;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: Arial, Helvetica, serif;
+		font-size: 18px;
+		background: radial-gradient(circle at 50% 0%, #6cafc3, rgba(255, 255, 255, 0)), radial-gradient(circle at 50% 100%, #6cafc3, #1a456e);
+	}
+	body * {
+		box-sizing: border-box;
+	}
+
+	.gallery {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		position: relative;
+		padding-top: 60px;
+	}
+	.gallery:before, .gallery:after {
+		content: "";
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		border: 0 solid #fff;
+		border-width: 0 0 3px 3px;
+		transform: rotate(45deg);
+		left: 15px;
+		top: 11px;
+		border-radius: 2px;
+		opacity: 0.5;
+		animation: hide-s 2s ease 6s 1;
+		animation-fill-mode: forwards;
+	}
+	.gallery:after {
+		left: inherit;
+		right: 15px;
+		transform: rotate(-135deg);
+	}
+
+	.resizer {
+		position: absolute;
+		top: 0;
+		width: calc(100% - 45px);
+		height: 36px;
+		overflow: hidden;
+		text-align: center;
+		color: #fff;
+		line-height: 38px;
+		font-weight: 500;
+		letter-spacing: 1px;
+		animation: letter-s 2s ease 0s 3 alternate, hide-s 2s ease 6s 1;
+		animation-fill-mode: backwards, forwards;
+		opacity: 0.5;
+	}
+	.resizer:before, .resizer:after {
+		content: "";
+		position: absolute;
+		width: calc(50% - 125px);
+		border-bottom: 4px dotted #fff;
+		margin-left: 20px;
+		top: 18px;
+		left: 0;
+		animation: lines-s 2s ease 0s 3 alternate;
+	}
+	.resizer:after {
+		right: 15px;
+		left: inherit;
+		margin-right: 7px;
+	}
+
+	@keyframes letter-s {
+		0% {
+			letter-spacing: 8px;
+		}
+		100% {
+			letter-spacing: 1px;
+		}
+	}
+	@keyframes lines-s {
+		0% {
+			width: calc(50% - 175px);
+		}
+		100% {
+			width: calc(50% - 125px);
+		}
+	}
+	@keyframes hide-s {
+		0% {
+			opacity: 0.5;
+		}
+		100% {
+			opacity: 0.2;
+		}
+	}
+	.item:after {
+		content: "";
+		background-color: rgba(255, 255, 255, 0.6);
+		opacity: 0.6;
+		top: 0;
+		bottom: 0;
+		left: -100%;
+		position: absolute;
+		width: 5vmin;
+		box-shadow: 0 0 10vmin 2.5vmin #fff;
+		transform: skew(-20deg);
+		transition: all 0.25s ease;
+	}
+	.item:hover:before {
+		opacity: 0;
+		transition: opacity 0.65s ease 0s;
+	}
+	.item:hover:after {
+		left: 400px;
+		transition: left 0.5s ease 0s;
+	}
+
+	/*** Navigation ***/
+	.pagination {
+		text-align: center;
+	}
+	.pagination ul {
+		padding: 0 0px;
+		margin: 10px 0 0;
+		background: rgba(255, 255, 255, 0.1333333333);
+		border-radius: 10px;
+	}
+	.pagination ul li {
+		display: inline-flex;
+		margin: 5px;
+		color: #fff;
+		height: 50px;
+	}
+
+	.pagination li a {
+		padding: 10px;
+		background: rgba(255, 255, 255, 0.8666666667);
+		color: var(--c2);
+		text-decoration: none;
+		border-radius: 5px;
+	}
+
+	.pagination li.page_link a:hover {
+		background: var(--c2);
+		color: #fff;
+	}
+
+	.pagination li.active_page a {
+		background: var(--c2);
+		color: #fff;
+	}
+
+	.pagination li > span {
+		font-weight: bold;
+		font-size: 15px;
+		top: -4px;
+		position: relative;
+	}
+
+	.pagination li a span {
+		min-width: 20px;
+		display: inline-block;
+	}
+
+	.pagination li.page_link.active_page.active a {
+		cursor: default;
+	}
+
+	li.previous_link a, li.next_link a,
+	li.first_link a, li.last_link a {
+		background: rgba(255, 255, 255, 0);
+		/* border: 2px solid #fff; */
+		color: rgba(255, 255, 255, 0);
+		display: block;
+		padding: 10px 12px;
+	}
+
+	li.previous_link a:before, li.next_link a:before,
+	li.first_link a:before, li.last_link a:before {
+		content: "";
+		border: 2px solid #fff;
+		width: 12px;
+		height: 12px;
+		display: block;
+		position: absolute;
+		border-width: 3px 0 0 3px;
+		transform: rotate(-45deg);
+		margin-top: 3px;
+		margin-left: 3px;
+		border-radius: 2px;
+	}
+
+	li.next_link a:before,
+	li.last_link a:before {
+		transform: rotate(135deg);
+		margin-left: -3px;
+	}
+
+	li.first_link a:before, li.last_link a:before {
+		filter: drop-shadow(5px 5px 0 #fff);
+		margin-left: 0px;
+	}
+
+	li.previous_link a:hover, li.next_link a:hover,
+	li.first_link a:hover, li.last_link a:hover {
+		background: var(--c2);
+		border-color: var(--c2);
+	}
+
+	li.no_more.disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	li.page_link.first.active_page.active a {
+		cursor: default;
+	}
+
+	@media screen and (orientation: landscape) and (max-width: 800px) {
+		.pagination ul {
+			margin-top: 20px;
+		}
+		.resizer {
+			top: 5px;
+		}
+		.gallery:before, .gallery:after {
+			top: 16px;
+		}
+	}
 </style>
 <div class="page-loader"></div>
 
@@ -700,65 +941,98 @@ Common
 						</div>
 					</div>
 
-					<div class="row row-clean pagination-container">
+					<div class="row row-clean pagination-container gallery">
 
 						<!--product-item-->
 
-						<?php foreach($listExamsByAdmin as $exam) { ?>
-							<div class="col-md-12 ">
+						  <!--
+							<div class="col-md-12 items">
 
-								<article data-page="<?php echo ($exam->id % 5)+1; ?>"  >
+								<article data-page="<?php /*echo ($exam->id % 5)+1; */?>"  >
 									<div class="info">
 									<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/edit/exam-by-teacher/<?php echo $exam->id ; ?>/<?php echo $exam->teacher_id ?>" class="" data-title="View/edit Exam"><i class="icon icon-eye"></i></a>
+                                        <a target="_blank" href="<?php /*echo base_url(); */?>index.php/admin/edit/exam-by-teacher/<?php /*echo $exam->id ; */?>/<?php /*echo $exam->teacher_id */?>" class="" data-title="View/edit Exam"><i class="icon icon-eye"></i></a>
                                     </span>
 										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/affect/exam/<?php echo $exam->id ; ?>" class="" data-title="Affect"><i class="icon icon-arrow-right"></i></a>
+                                        <a target="_blank" href="<?php /*echo base_url(); */?>index.php/admin/affect/exam/<?php /*echo $exam->id ; */?>" class="" data-title="Affect"><i class="icon icon-arrow-right"></i></a>
                                     </span>
 										<span>
-                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/list-students/exam/<?php echo $exam->id ; ?>" class="" data-title="students who passed this exam"><i class="icon icon-menu"></i></a>
+                                        <a target="_blank" href="<?php /*echo base_url(); */?>index.php/admin/list-students/exam/<?php /*echo $exam->id ; */?>" class="" data-title="students who passed this exam"><i class="icon icon-menu"></i></a>
                                     </span>
 
 									</div>
-									<div class="figure-list">
+									<div class="figure-list item">
 										<div class="image">
-											<a  target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>" class="mfp-open">
-												<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
+											<a  target="_blank" href="<?php /*echo base_url(); */?>index.php/student/pass/exam/<?php /*echo $exam->id ; */?>" class="mfp-open">
+												<img src="<?php /*echo base_url(); */?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
 											</a>
 										</div>
 										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title_exam; ?></a></h2>
-											<sup>Date of creation : <?php echo $exam->date_created ; ?></sup><br>
+											<h2 class="title h4"><a target="_blank" href="<?php /*echo base_url(); */?>index.php/student/pass/exam/<?php /*echo $exam->id ; */?>">Exam <?php /*echo $exam->title_exam; */?></a></h2>
+											<sup>Date of creation : <?php /*echo $exam->date_created ; */?></sup><br>
 											<sup>Students who passed this exam :
-												<?php foreach ($arrayCountStudentsByExam as $key => $countStudents){
-													if($key==$exam->id) {?>
-												<a style="font-weight: bold;"><?php echo $arrayCountStudentsByExam[$key] ; ?></a>
-												<?php }} ?>
+												<?php /*foreach ($arrayCountStudentsByExam as $key => $countStudents){
+													if($key==$exam->id) {*/?>
+												<a style="font-weight: bold;"><?php /*echo $arrayCountStudentsByExam[$key] ; */?></a>
+												<?php /*}} */?>
 											</sup>
-											<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
-											-->										</div>
+																					</div>
 									</div>
 								</article>
 
 
 							</div>
-						<?php } ?>
+						-->
+						<div class="gallery">
+							<div class="resizer">RESIZE SCREEN</div>
+							<div class="items">
+								<!--product-item-->
+
+								<?php foreach($listExamsByAdmin as $exam) { ?>
+									<div class="col-md-12 item">
+
+										<article data-page="<?php echo ($exam->id % 5)+1; ?>"  >
+											<div class="info">
+									<span>
+                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/edit/exam-by-teacher/<?php echo $exam->id ; ?>/<?php echo $exam->teacher_id ?>" class="" data-title="View/edit Exam"><i class="icon icon-eye"></i></a>
+                                    </span>
+												<span>
+                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/affect/exam/<?php echo $exam->id ; ?>" class="" data-title="Affect"><i class="icon icon-arrow-right"></i></a>
+                                    </span>
+												<span>
+                                        <a target="_blank" href="<?php echo base_url(); ?>index.php/admin/list-students/exam/<?php echo $exam->id ; ?>" class="" data-title="students who passed this exam"><i class="icon icon-menu"></i></a>
+                                    </span>
+
+											</div>
+											<div class="figure-list">
+												<div class="image">
+													<a  target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>" class="mfp-open">
+														<img src="<?php echo base_url(); ?>assets/images/avatars/exam.png" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
+													</a>
+												</div>
+												<div class="text">
+													<h2 class="title h4"><a target="_blank" href="<?php echo base_url(); ?>index.php/student/pass/exam/<?php echo $exam->id ; ?>">Exam <?php echo $exam->title_exam; ?></a></h2>
+													<sup>Date of creation : <?php echo $exam->date_created ; ?></sup><br>
+													<sup>Students who passed this exam :
+														<?php foreach ($arrayCountStudentsByExam as $key => $countStudents){
+															if($key==$exam->id) {?>
+																<a style="font-weight: bold;"><?php echo $arrayCountStudentsByExam[$key] ; ?></a>
+															<?php }} ?>
+													</sup>
+													<!--											<span class="description clearfix">Gubergren amet dolor ea diam takimata consetetur facilisis blandit et aliquyam lorem ea duo labore diam sit et consetetur nulla</span>
+													-->										</div>
+											</div>
+										</article>
 
 
-						<br><br><br>
-						<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
-							<ul class="page_control ">
-								<li data-page="-" ><a href="#" >&lt;</a></li>
-								<li class="active" data-page="1">
-									<a href="#" >1</a>
-								</li>
-								<li data-page="2"><a href="#" >2</a></li>
-								<li data-page="3"><a href="#" >3</a></li>
-								<li data-page="4"><a href="#" >4</a></li>
-								<li data-page="5"><a href="#" >5</a></li>
-								<li data-page="+"><a href="#" >&gt;</a></li>
-							</ul>
+									</div>
+								<?php } ?>
+
+							</div>
+							<div class="pagination"></div>
 						</div>
+						<br><br><br>
+
 					</div><!--/row-->
 					<!--Pagination-->
 					<!--<div class="pagination-wrapper">
@@ -839,8 +1113,51 @@ Common
 <!-- Compiled and minified JavaScript -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.josetxu.com/js/pure-pajinate.es5.min.js"></script>
 
 <script>
+
+
+	let itms = 6; // itemsPerPage
+	let stpg = 1; // startPage
+	let pltd = 4; // pageLinksToDisplay
+	let winw = window.innerWidth;
+
+	function optionsByWindowSize() {
+		winw = window.innerWidth;
+		if (winw > 1600) { itms = 3; stpg = 1; pltd = 4; }
+		else if (winw > 1230) { itms = 3; stpg = 2; pltd = 4; }
+		else if (winw > 980) { itms = 4; stpg = 3; pltd = 4; }
+		else if (winw > 750) { itms = 3; stpg = 4; pltd = 4; }
+		else if (winw > 510) { itms = 2; stpg = 5; pltd = 4; }
+		else { itms = 1; stpg = 6; pltd = 1; }
+	}
+
+	function reportWindowSize() {
+		optionsByWindowSize();
+		//purePajination Script - START
+		if (document.readyState === "complete") {
+			var gallery = new purePajinate({
+				containerSelector: '.items',
+				itemSelector: '.items > div',
+				navigationSelector: '.pagination',
+				/*wrapAround: true,*/
+				pageLinksToDisplay: pltd,
+				showFirstLast: true,
+				navLabelPrev: '&nbsp;&nbsp;&nbsp;',
+				navLabelNext: '&nbsp;&nbsp;&nbsp;',
+				navLabelFirst: '&nbsp;&nbsp;&nbsp;',
+				navLabelLast: '&nbsp;&nbsp;&nbsp;',
+				itemsPerPage: itms,
+				startPage: stpg
+			});
+		} //purePajination Script - END
+	}
+
+	document.onreadystatechange = reportWindowSize;
+	window.onresize = reportWindowSize;
+
+
 	var paginationHandler = function(){
 		// store pagination container so we only select it once
 		<?php if(isset($listTeachersToaApproveByAdmin) and $listTeachersToaApproveByAdmin!=null){ ?>
