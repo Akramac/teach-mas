@@ -139,6 +139,19 @@
 	}
 
 
+
+	/* style card */
+	.products article .text sup{
+		display: inline;
+	}
+
+	@media (max-width: 768px) {
+		.products article .info {
+			display: block;
+			position: absolute;
+		}
+	}
+
 	/* style countdown */
 
 	.countdown {
@@ -978,7 +991,7 @@ Common
 							</div>
 						-->
 						<div class="gallery">
-							<div class="resizer">RESIZE SCREEN</div>
+							<div class="resizer"></div>
 							<div class="items">
 								<!--product-item-->
 
@@ -1112,19 +1125,19 @@ Common
 <script>
 
 
-	let itms = 6; // itemsPerPage
+	let itms = 3; // itemsPerPage
 	let stpg = 1; // startPage
-	let pltd = 4; // pageLinksToDisplay
+	let pltd = 1; // pageLinksToDisplay
 	let winw = window.innerWidth;
 
 	function optionsByWindowSize() {
 		winw = window.innerWidth;
-		if (winw > 1600) { itms = 3; stpg = 1; pltd = 4; }
-		else if (winw > 1230) { itms = 3; stpg = 2; pltd = 4; }
-		else if (winw > 980) { itms = 4; stpg = 3; pltd = 4; }
-		else if (winw > 750) { itms = 3; stpg = 4; pltd = 4; }
-		else if (winw > 510) { itms = 2; stpg = 5; pltd = 4; }
-		else { itms = 1; stpg = 6; pltd = 1; }
+		if (winw > 1600) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 1230) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 980) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 750) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 510) { itms = 2; stpg = 0; pltd = 4; }
+		else { itms = 1; stpg = 0; pltd = 1; }
 	}
 
 	function reportWindowSize() {

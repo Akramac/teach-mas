@@ -138,6 +138,11 @@
 		cursor: pointer;
 	}
 
+	/* style card */
+	.products article .text sup{
+		display: inline;
+	}
+
 
 	/* style countdown */
 
@@ -558,6 +563,241 @@ Common
 	.div-after-label{
 		margin-top: 15%;
 	}
+
+	/* Pagination css */
+
+	/*** fixing bug on reflex ***/
+	:root {
+		--c2: #004a6a;
+	}
+
+	body * {
+		box-sizing: border-box;
+	}
+
+	.gallery {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		position: relative;
+		padding-top: 60px;
+	}
+	.gallery:before, .gallery:after {
+		content: "";
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		border: 0 solid #fff;
+		border-width: 0 0 3px 3px;
+		transform: rotate(45deg);
+		left: 15px;
+		top: 11px;
+		border-radius: 2px;
+		opacity: 0.5;
+		animation: hide-s 2s ease 6s 1;
+		animation-fill-mode: forwards;
+	}
+	.gallery:after {
+		left: inherit;
+		right: 15px;
+		transform: rotate(-135deg);
+	}
+
+	.resizer {
+		position: absolute;
+		top: 0;
+		width: calc(100% - 45px);
+		height: 36px;
+		overflow: hidden;
+		text-align: center;
+		color: #fff;
+		line-height: 38px;
+		font-weight: 500;
+		letter-spacing: 1px;
+		animation: letter-s 2s ease 0s 3 alternate, hide-s 2s ease 6s 1;
+		animation-fill-mode: backwards, forwards;
+		opacity: 0.5;
+	}
+	.resizer:before, .resizer:after {
+		content: "";
+		position: absolute;
+		width: calc(50% - 125px);
+		border-bottom: 4px dotted #fff;
+		margin-left: 20px;
+		top: 18px;
+		left: 0;
+		animation: lines-s 2s ease 0s 3 alternate;
+	}
+	.resizer:after {
+		right: 15px;
+		left: inherit;
+		margin-right: 7px;
+	}
+
+	@keyframes letter-s {
+		0% {
+			letter-spacing: 8px;
+		}
+		100% {
+			letter-spacing: 1px;
+		}
+	}
+	@keyframes lines-s {
+		0% {
+			width: calc(50% - 175px);
+		}
+		100% {
+			width: calc(50% - 125px);
+		}
+	}
+	@keyframes hide-s {
+		0% {
+			opacity: 0.5;
+		}
+		100% {
+			opacity: 0.2;
+		}
+	}
+	.item:after {
+		content: "";
+		background-color: rgba(255, 255, 255, 0.6);
+		opacity: 0.6;
+		top: 0;
+		bottom: 0;
+		left: -100%;
+		position: absolute;
+		width: 5vmin;
+		box-shadow: 0 0 10vmin 2.5vmin #fff;
+		transform: skew(-20deg);
+		transition: all 0.25s ease;
+	}
+	.item:hover:before {
+		opacity: 0;
+		transition: opacity 0.65s ease 0s;
+	}
+	.item:hover:after {
+		left: 400px;
+		transition: left 0.5s ease 0s;
+	}
+
+	/*** Navigation ***/
+	.pagination {
+		text-align: center;
+	}
+	.pagination ul {
+		padding: 0 0px;
+		margin: 10px 0 0;
+		background: rgba(255, 255, 255, 0.1333333333);
+		border-radius: 10px;
+	}
+	.pagination ul li {
+		display: inline-flex;
+		margin: 5px;
+		color: #fff;
+		height: 50px;
+	}
+
+	.pagination li {
+		vertical-align: baseline;
+	}
+
+	.pagination li a {
+		padding: 10px;
+		background: rgba(255, 255, 255, 0.8666666667);
+		color: var(--c2);
+		text-decoration: none;
+		border-radius: 5px;
+		line-height: 20px;
+	}
+
+	.pagination li.page_link a:hover {
+		background: var(--c2);
+		color: #fff;
+	}
+
+	.pagination li.active_page a {
+		background: var(--c2);
+		color: #fff;
+	}
+
+	.pagination li > span {
+		color: #000;
+		font-weight: bold;
+		font-size: 15px;
+		top: -4px;
+		position: relative;
+	}
+
+	.pagination li a span {
+		min-width: 20px;
+		display: inline-block;
+	}
+
+	.pagination li.page_link.active_page.active a {
+		cursor: default;
+	}
+
+	li.previous_link a, li.next_link a,
+	li.first_link a, li.last_link a {
+		background: rgba(255, 255, 255, 0);
+		/* border: 2px solid #fff; */
+		color: black;
+		display: block;
+		padding: 10px 12px;
+	}
+
+	li.previous_link a:before, li.next_link a:before,
+	li.first_link a:before, li.last_link a:before {
+		content: "";
+		border: 2px solid #000;
+		width: 12px;
+		height: 12px;
+		display: block;
+		position: absolute;
+		border-width: 3px 0 0 3px;
+		transform: rotate(-45deg);
+		margin-top: 3px;
+		margin-left: 3px;
+		border-radius: 2px;
+	}
+
+	li.next_link a:before,
+	li.last_link a:before {
+		transform: rotate(135deg);
+		margin-left: -3px;
+	}
+
+	li.first_link a:before, li.last_link a:before {
+		filter: drop-shadow(5px 5px 0 #000);
+		margin-left: 0px;
+	}
+
+	li.previous_link a:hover, li.next_link a:hover,
+	li.first_link a:hover, li.last_link a:hover {
+		background: var(--c2);
+		border-color: var(--c2);
+	}
+
+	li.no_more.disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	li.page_link.first.active_page.active a {
+		cursor: default;
+	}
+
+	@media screen and (orientation: landscape) and (max-width: 800px) {
+		.pagination ul {
+			margin-top: 20px;
+		}
+		.resizer {
+			top: 5px;
+		}
+		.gallery:before, .gallery:after {
+			top: 16px;
+		}
+	}
 </style>
 <div class="page-loader"></div>
 
@@ -663,37 +903,43 @@ Common
 					<div class="row row-clean pagination-container">
 
 						<!--product-item-->
+						<div class="gallery">
+							<div class="resizer"></div>
+							<div class="items">
+								<!--product-item-->
 
-						<?php foreach($studentsPassedExam as $student) { ?>
-							<div class="col-md-12 ">
+								<?php foreach($studentsPassedExam as $student) { ?>
+									<div class="col-md-12 item">
 
-								<article data-page="<?php echo ($student->id % 5)+1; ?>"  >
-									<div class="info">
-										<!--<span>
-                                        <a target="_blank" href="" class="" data-title="students who passed this exam"><i class="icon icon-menu"></i></a>
-                                    </span>-->
+										<article data-page="<?php echo ($student->id % 5)+1; ?>"  >
+											<div class="info">
+												<!--<span>
+												<a target="_blank" href="" class="" data-title="students who passed this exam"><i class="icon icon-menu"></i></a>
+											</span>-->
+											</div>
+											<div class="figure-list">
+												<div class="image">
+													<a  target="_blank" href="" class="mfp-open">
+														<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $student->id % 4 +1; ?>.jpg" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
+													</a>
+												</div>
+												<div class="text">
+													<h2 class="title h4"><a target="_blank" href="">Student : <?php echo $student->name; ?></a></h2>
+													<sup>Note : <?php if(array_key_exists($student->id,$arrayNotes)){ if($arrayNotes[$student->id]>=10){ ?> <a style="color:green;font-weight: bold;"><?php echo $arrayNotes[$student->id] ;?> </a><?php }else{ ?> <a style="color:red;font-weight: bold;"><?php echo $arrayNotes[$student->id] ;?> </a> <?php }?><?php }?></sup><br>
+													<sup>Date of creation : <?php echo $student->created_at ; ?></sup>
+												</div>
+											</div>
+										</article>
 									</div>
-									<div class="figure-list">
-										<div class="image">
-											<a  target="_blank" href="" class="mfp-open">
-												<img src="<?php echo base_url(); ?>assets/images/avatars/teacher<?php echo $student->id % 4 +1; ?>.jpg" alt="" width="300" style="width: 70% !important;margin-left: 10%;" />
-											</a>
-										</div>
-										<div class="text">
-											<h2 class="title h4"><a target="_blank" href="">Student : <?php echo $student->name; ?></a></h2>
-											<sup>Note : <?php if(array_key_exists($student->id,$arrayNotes)){ if($arrayNotes[$student->id]>=10){ ?> <a style="color:green;font-weight: bold;"><?php echo $arrayNotes[$student->id] ;?> </a><?php }else{ ?> <a style="color:red;font-weight: bold;"><?php echo $arrayNotes[$student->id] ;?> </a> <?php }?><?php }?></sup><br>
-											<sup>Date of creation : <?php echo $student->created_at ; ?></sup>
-										</div>
-									</div>
-								</article>
-
+								<?php } ?>
 
 							</div>
-						<?php } ?>
-
-
+							<div class="pagination"></div>
+						</div>
 						<br><br><br>
-						<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
+
+
+						<!--<div class="pagination pagination-centered pagination-large" style="position:absolute; bottom:0;">
 							<ul class="page_control ">
 								<li data-page="-" ><a href="#" >&lt;</a></li>
 								<li class="active" data-page="1">
@@ -705,7 +951,7 @@ Common
 								<li data-page="5"><a href="#" >5</a></li>
 								<li data-page="+"><a href="#" >&gt;</a></li>
 							</ul>
-						</div>
+						</div>-->
 					</div><!--/row-->
 					<!--Pagination-->
 					<!--<div class="pagination-wrapper">
@@ -786,8 +1032,48 @@ Common
 <!-- Compiled and minified JavaScript -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.0.0/jquery.steps.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.josetxu.com/js/pure-pajinate.es5.min.js"></script>
 
 <script>
+	let itms = 3; // itemsPerPage
+	let stpg = 1; // startPage
+	let pltd = 4; // pageLinksToDisplay
+	let winw = window.innerWidth;
+
+	function optionsByWindowSize() {
+		winw = window.innerWidth;
+		if (winw > 1600) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 1230) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 980) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 750) { itms = 3; stpg = 0; pltd = 4; }
+		else if (winw > 510) { itms = 2; stpg = 0; pltd = 4; }
+		else { itms = 1; stpg = 6; pltd = 1; }
+	}
+
+	function reportWindowSize() {
+		optionsByWindowSize();
+		//purePajination Script - START
+		if (document.readyState === "complete") {
+			var gallery = new purePajinate({
+				containerSelector: '.items',
+				itemSelector: '.items > div',
+				navigationSelector: '.pagination',
+				/*wrapAround: true,*/
+				pageLinksToDisplay: pltd,
+				showFirstLast: true,
+				navLabelPrev: '&nbsp;&nbsp;&nbsp;',
+				navLabelNext: '&nbsp;&nbsp;&nbsp;',
+				navLabelFirst: '&nbsp;&nbsp;&nbsp;',
+				navLabelLast: '&nbsp;&nbsp;&nbsp;',
+				itemsPerPage: itms,
+				startPage: stpg
+			});
+		} //purePajination Script - END
+	}
+
+	document.onreadystatechange = reportWindowSize;
+	window.onresize = reportWindowSize;
+
 	var paginationHandler = function(){
 		// store pagination container so we only select it once
 		<?php if(isset($listTeachersToaApproveByAdmin) and $listTeachersToaApproveByAdmin!=null){ ?>
